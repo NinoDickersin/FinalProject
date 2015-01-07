@@ -62,8 +62,17 @@ public class PhysXEngine{
 	maxHeight = Math.pow(velocity,2) * Math.pow(sin(angle),2) / 20;
     }
     //Generates the parabolic trajectory for the object.
-    public void generateParabolicPath(){
-	
+    public Array generateParabolicPath(int angle, int velocity){
+	int[]output = new int[6];
+	setAngle(angle);
+	setVelocity(v);
+	setXYvelocity();
+	output[0] = angle;
+	output[1] = maxHeight;
+	output[2] = range;
+	output[3] = Xvelocity;
+	output[4] = Yvelocity;
+	output[5] = timeTotal;
     }
 
 }
