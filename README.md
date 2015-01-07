@@ -7,4 +7,4 @@ We are going to make a projectile launch game. The game will feature a launch de
 
 1/5/15: Added Game.java and updated README.md
 
-1/6/15: Started work on PhysXEngine.java
+1/6/15: Started work on PhysXEngine.java + Ferret sprite image
