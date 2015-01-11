@@ -7,7 +7,7 @@ color currentColor, rectColor;
 void setup(){
     rectColor = color(0);
     currentColor = color(-200);
-     size(500,500);
+     size(displayWidth,displayHeight);
        
 }
 void draw(){
@@ -32,13 +32,9 @@ void update(int x, int y){
 void mousePressed() {
   if (rectOver){
     if (a % 2 == 0){
-     minim = new Minim(this);
-     player = minim.loadFile("song.mp3", 2048);
-     player.play();
+     startM();
     }else{
-     player.close();
-     minim.stop();
-     super.stop();
+    stopM();
     }
     a = a + 1;
 }
@@ -51,12 +47,14 @@ boolean overRect(int x, int y, int width, int height)  {
     return false;
   }
 }
-void start(){
+void startM(){
   minim = new Minim(this);
   player = minim.loadFile("song.mp3", 2048);
   player.play(); 
 }
 
-void stop(){
-  
+void stopM(){
+   player.close();
+     minim.stop();
+     super.stop();
 }
