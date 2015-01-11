@@ -13,4 +13,6 @@ We are going to make a projectile launch game. The game will feature a launch de
 
 1/8/15 We added music and the beginnings of a main menu.  The ferret is now launched when the player presses a button.
 
-1/9/15 Created play / pause button, added bounce().  Tried to work on sound, didn't go well.
+1/9/15 Created play / pause button, added bounce() but it doesn't work correctly.  Tried to work on sound, didn't go well.
+
+1/11/15 bounce() now works correctly!  Created a processing file to test the changing of background color when a button is pushed, will eventually become our main screen.
