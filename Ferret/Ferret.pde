@@ -12,20 +12,24 @@ color startHighlight = color(100,100,100); //color when highlighted
 boolean startOver = false; //if mouse is over start button
 boolean run = false; //if ferret is in motion
 int ferretRad = 40; //radius of ferret
+int cannonWidth; //width of cannon
+int cannonLength; //length of cannon
+int cannonAngle; //angle of launch
+int cannonPower; //power of cannon
 
 
 
 
 void setup(){
    size(displayWidth, displayHeight);
-   XVelocity = 25;
+   XVelocity = 10;
   YVelocity = -20;
   XPosition = 50;
   YPosition = 480;
   gravity = 1;
 }
 void draw(){
-  background(255);
+ background(255);
   fill(0,255,0);
   rect(0, controlY, displayWidth, displayHeight - controlY);
   noFill();
@@ -35,12 +39,9 @@ void draw(){
      }else{
       fill(startColor); 
      }
-     ellipse(startX, startY, startSize, startSize);
-     noFill();
-     fill(0,0,255);
-        ellipse(XPosition,YPosition,ferretRad,ferretRad);
-     noFill();
-     fill(0,255,0);
+  ferretSetup();
+  cannonSetup(100, 50);
+   fill(0,0,0);
    if (run){
    update();
    endRun();
@@ -49,6 +50,23 @@ void draw(){
    }else{
    triangle(startX - 10, startY + 10, startX - 10, startY - 10, startX + 15, startY);
    }
+   noFill();
+}
+
+void cannonSetup(int length, int width){
+ fill(0,0,0);
+ rect (startX, controlY - (width + 20), length, width);
+ noFill();
+}
+
+
+void ferretSetup(){
+ ellipse(startX, startY, startSize, startSize);
+     noFill();
+     fill(0,0,255);
+        ellipse(XPosition,YPosition,ferretRad,ferretRad);
+     noFill();
+     fill(0,255,0); 
 }
 
 void mouseUpdate(int x, int y){
@@ -70,11 +88,10 @@ boolean mouseOver(int x, int y, int diameter){
 }
 
 void update(){
-      bounce();
     YVelocity += gravity;
     XPosition += XVelocity;
     YPosition += YVelocity;
-
+    bounce();
 }
 
 void mousePressed() {
@@ -86,16 +103,17 @@ void mousePressed() {
 }
 
 void bounce(){
-   if (YPosition >= controlY - ferretRad) {
+   if (YPosition >= controlY - (ferretRad / 2)) {
     YVelocity = - 1 * 3 * YVelocity / 4;
     XVelocity -= 2;
   } 
 }
 void endRun(){
-   if (XVelocity <= 0 && YPosition >= controlY - ferretRad){
+   if (XVelocity <= 0 && YPosition >= controlY - (ferretRad / 2)){
       XVelocity = 0;
       YVelocity = 0;
-      run = false; 
+      run = false;
+      YPosition = controlY - (ferretRad / 2);
    }
 }
 
