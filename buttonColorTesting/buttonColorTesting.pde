@@ -1,9 +1,15 @@
+import ddf.minim.*;
+AudioPlayer player;
+Minim minim;
 int a = 0;
 boolean rectOver = false;
 void setup(){
-  size(1000, 1000);
+  size(1920, 1080);
 }
 void draw(){
+  PImage img;
+img = loadImage("background.jpg");
+background(img);
   update(mouseX,mouseY);
   if (rectOver){
        fill(color(51));
@@ -24,9 +30,9 @@ void update(int x, int y){
 void mousePressed(){
   if (rectOver){
     if(a % 2 == 0){
-      background(-100);
+      startM();
     }else{
-        background(100);
+       stopM();
     }
     a = a + 1;
   }
@@ -39,6 +45,15 @@ boolean overRect(int x, int y, int width, int height){
     return false;
   }
 }
+void startM(){
+  minim = new Minim(this);
+  player = minim.loadFile("song.mp3", 2048);
+  player.play(); 
+}
 
-      
+void stopM(){
+   player.close();
+     minim.stop();
+     super.stop();
+}
         

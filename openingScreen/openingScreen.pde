@@ -2,6 +2,7 @@ import ddf.minim.*;
 AudioPlayer player;
 Minim minim;//audio context
 int a = 2;
+PImage img;
 boolean rectOver = false;
 color currentColor, rectColor;
 void setup(){
@@ -12,7 +13,8 @@ void setup(){
 }
 void draw(){
      update(mouseX,mouseY);
-     background(currentColor);
+img = loadImage("background.jpg");
+background(img);
      if (rectOver){
        fill(color(51));
      }else{
