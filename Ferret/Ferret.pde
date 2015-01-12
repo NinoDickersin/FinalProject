@@ -1,3 +1,5 @@
+public class Ferret{
+
 int XVelocity; //Velocity of X
 int YVelocity; //Velocity of Y
 int XPosition; //X position of ferret
@@ -116,4 +118,4 @@ void endRun(){
       YPosition = controlY - (ferretRad / 2);
    }
 }
-
+}
