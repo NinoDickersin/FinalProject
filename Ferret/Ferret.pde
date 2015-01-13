@@ -1,48 +1,62 @@
-public class Ferret{
+import ddf.minim.*;
 
-int XVelocity; //Velocity of X
-int YVelocity; //Velocity of Y
-int XPosition; //X position of ferret
-int YPosition; //Y position of ferret
-int gravity; //Acceleration towards ground
+AudioPlayer player; //mp3 player
+Minim minim; //audio context
+float XVelocity; //Velocity of X
+float YVelocity; //Velocity of Y
+float XPosition; //X position of ferret
+float YPosition; //Y position of ferret
+float gravity; //Acceleration towards ground
 int controlY = 670;
 int startX = 70;
-int startY = controlY + 80; //Start button position
+int startY = 750; //Start button position
 int startSize = 90; //Size of start button
 color startColor = color(255,255.255); //Color of start button
 color startHighlight = color(100,100,100); //color when highlighted
 boolean startOver = false; //if mouse is over start button
+int angleSliderX = 170; //x position of angle slider
+int angleSliderY = 710; //y position of angle slider
+boolean angleSliderOver = false; //if mouse is over the angle slider
+boolean angleSliderStopped = false; //checks if the angle has been found
+int angleSliderIncrement = 0; //increment of the sliding box
+int powerSliderX = angleSliderX; //x position of power slider
+int powerSliderY = 800; //y position of power slider
+boolean powerSliderOver = false; //if mouse is over power slider
+boolean powerSliderStopped = false; //if power has been found
+int powerSliderIncrement = angleSliderIncrement; //increment of the sliding box
+int sliderAngleNeg = 1; //negation for moving slider box
+int sliderPowerNeg = 1; //negation for other moving slider box
 boolean run = false; //if ferret is in motion
 int ferretRad = 40; //radius of ferret
 int cannonWidth; //width of cannon
 int cannonLength; //length of cannon
-int cannonAngle; //angle of launch
-int cannonPower; //power of cannon
+float cannonAngle = 45; //angle of launch
+float cannonPower = 100; //power of cannon
 
 
 
 
 void setup(){
+  minim = new Minim(this);
+  player = minim.loadFile("cheetahmen.mp3", 2048);
+  player.play();
    size(displayWidth, displayHeight);
-   XVelocity = 10;
-  YVelocity = -20;
-  XPosition = 50;
-  YPosition = 480;
-  gravity = 1;
 }
 void draw(){
  background(255);
   fill(0,255,0);
   rect(0, controlY, displayWidth, displayHeight - controlY);
-  noFill();
-     mouseUpdate(mouseX, mouseY);
+  mouseUpdate(mouseX, mouseY);
+  angleSlider();
+  powerSlider();
      if (startOver){
       fill(startHighlight); 
      }else{
       fill(startColor); 
      }
+  ellipse(startX, startY, startSize, startSize);
+  cannonSetup(100, 50, cannonAngle);
   ferretSetup();
-  cannonSetup(100, 50);
    fill(0,0,0);
    if (run){
    update();
@@ -55,27 +69,91 @@ void draw(){
    noFill();
 }
 
-void cannonSetup(int length, int width){
+void stop(){
+  player.close();
+  minim.stop();
+  super.stop(); 
+}
+void cannonSetup(int l, int w, float a){
  fill(0,0,0);
- rect (startX, controlY - (width + 20), length, width);
+ rect (startX, controlY - (w + 20), l, w);
+ //translate(startX, controlY - (w + 20));
+ //rotate(radians(a));
  noFill();
 }
 
+void angleSlider(){
+  fill(255,255,255);
+  rect(angleSliderX, angleSliderY, 800, 40);
+  fill(128,255,0);
+  rect(angleSliderX + 100, angleSliderY, 600, 40);
+  fill(255,255,0);
+  rect(angleSliderX + 200, angleSliderY, 400, 40);
+  fill(255,128,0);
+  rect(angleSliderX + 300, angleSliderY, 200, 40);
+  fill(255,0,0);
+  rect(angleSliderX + 350, angleSliderY, 100, 40);
+  fill(0,0,0);
+  rect(angleSliderX + angleSliderIncrement, angleSliderY, 10, 40);
+  if (angleSliderIncrement >= 790 || angleSliderIncrement < 0){
+  sliderAngleNeg = sliderAngleNeg * -1;
+  }
+  if (!angleSliderStopped){
+  angleSliderIncrement = angleSliderIncrement + (10 * sliderAngleNeg);
+  }
+}
+
+void powerSlider(){
+  fill(255,255,255);
+  rect(powerSliderX, powerSliderY, 800, 40);
+  fill(128,255,0);
+  rect(powerSliderX + 100, powerSliderY, 600, 40);
+  fill(255,255,0);
+  rect(powerSliderX + 200, powerSliderY, 400, 40);
+  fill(255,128,0);
+  rect(powerSliderX + 300, powerSliderY, 200, 40);
+  fill(255,0,0);
+  rect(powerSliderX + 350, powerSliderY, 100, 40);
+  fill(0,0,0);
+  rect(powerSliderX + powerSliderIncrement, powerSliderY, 10, 40);
+  if (powerSliderIncrement >= 790 || powerSliderIncrement < 0){
+  sliderPowerNeg = sliderPowerNeg * -1;
+  }
+  if (!powerSliderStopped){
+  powerSliderIncrement = powerSliderIncrement + (10 * sliderPowerNeg);
+  }
+}
 
 void ferretSetup(){
- ellipse(startX, startY, startSize, startSize);
-     noFill();
-     fill(0,0,255);
-        ellipse(XPosition,YPosition,ferretRad,ferretRad);
-     noFill();
-     fill(0,255,0); 
+  if(!run){
+  XPosition = 40.;
+  YPosition = 480.;
+  gravity = 1.;
+  XVelocity = 20.;
+  YVelocity = 30.;
+  //XVelocity = cannonPower * cos(cannonAngle);
+  //YVelocity = cannonPower * sin(cannonAngle);
+  fill(0,0,255);
+  ellipse(XPosition,YPosition,ferretRad,ferretRad);
+  noFill();
+  }
 }
 
 void mouseUpdate(int x, int y){
-   if(mouseOver(startX, startY, startSize)){
+   if(mouseOver(startX, startY, startSize)){//checks for start button
       startOver = true;
    } else{
       startOver = false; 
+   }
+   if(mouseX > angleSliderX && mouseX < angleSliderX + 800 && mouseY > angleSliderY && mouseY < angleSliderY + 40){//checks for angle slider
+     angleSliderOver = true;
+   }else{
+     angleSliderOver = false; 
+   }
+   if(mouseX > powerSliderX && mouseX < powerSliderX + 800 && mouseY > powerSliderY && mouseY < powerSliderY + 40){//checks for power slider
+     powerSliderOver = true;
+   }else{
+     powerSliderOver = false; 
    }
 }
 
@@ -99,8 +177,14 @@ void update(){
 void mousePressed() {
    if (startOver & run == false){
      run = true;
-   }else{
+   }else if(startOver & run == true){
      run = false;
+   }
+   if(angleSliderOver && angleSliderStopped == false){
+    angleSliderStopped = true;
+   }
+   if(powerSliderOver && powerSliderStopped == false){
+      powerSliderStopped = true; 
    }
 }
 
@@ -118,4 +202,4 @@ void endRun(){
       YPosition = controlY - (ferretRad / 2);
    }
 }
-}
+
