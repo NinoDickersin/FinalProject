@@ -31,17 +31,16 @@ int ferretRad = 40; //radius of ferret
 int cannonWidth; //width of cannon
 int cannonLength; //length of cannon
 float cannonAngle = 45; //angle of launch
-float cannonPower = 100; //power of cannon
-
-
-
+float cannonPower = 50; //power of cannon
+boolean oneTime = true; // makes sure code only runs once
 
 void setup(){
-  minim = new Minim(this);
-  player = minim.loadFile("cheetahmen.mp3", 2048);
-  player.play();
-   size(displayWidth, displayHeight);
+  //minim = new Minim(this);
+  //player = minim.loadFile("cheetahmen.mp3", 2048);
+  //player.play();
+  size(displayWidth, displayHeight);
 }
+
 void draw(){
  background(255);
   fill(0,255,0);
@@ -125,18 +124,17 @@ void powerSlider(){
 }
 
 void ferretSetup(){
-  if(!run){
-  XPosition = 40.;
-  YPosition = 480.;
-  gravity = 1.;
-  XVelocity = 20.;
-  YVelocity = 30.;
-  //XVelocity = cannonPower * cos(cannonAngle);
-  //YVelocity = cannonPower * sin(cannonAngle);
+  if(oneTime){
+  XPosition = 40;
+  YPosition = 480;
+  gravity = 1;
+  XVelocity = cannonPower * cos(radians(cannonAngle));
+  YVelocity = -1 * cannonPower * sin(radians(cannonAngle));
+  }
+  oneTime = false;
   fill(0,0,255);
   ellipse(XPosition,YPosition,ferretRad,ferretRad);
   noFill();
-  }
 }
 
 void mouseUpdate(int x, int y){
@@ -168,23 +166,23 @@ boolean mouseOver(int x, int y, int diameter){
 }
 
 void update(){
-    YVelocity += gravity;
+    YVelocity -= gravity;
     XPosition += XVelocity;
-    YPosition += YVelocity;
+    YPosition -= YVelocity;
     bounce();
 }
 
 void mousePressed() {
-   if (startOver & run == false){
-     run = true;
-   }else if(startOver & run == true){
-     run = false;
-   }
    if(angleSliderOver && angleSliderStopped == false){
     angleSliderStopped = true;
    }
    if(powerSliderOver && powerSliderStopped == false){
       powerSliderStopped = true; 
+   }
+   if (startOver && run == false){
+     run = true;
+   }else if(startOver && run == true){
+     run = false;
    }
 }
 
