@@ -1,5 +1,8 @@
 import ddf.minim.*;
-
+int c; //counter for pixels
+PImage img; //used for background image
+int x; //Used for background
+int y; //Used for background
 AudioPlayer player; //mp3 player
 Minim minim; //audio context
 float XVelocity; //Velocity of X
@@ -30,19 +33,27 @@ boolean run = false; //if ferret is in motion
 int ferretRad = 40; //radius of ferret
 int cannonWidth; //width of cannon
 int cannonLength; //length of cannon
-float cannonAngle = 45; //angle of launch
-float cannonPower = 50; //power of cannon
+float cannonAngle = -45; //angle of launch
+float cannonPower = 20; //power of cannon
 boolean oneTime = true; // makes sure code only runs once
-
 void setup(){
-  //minim = new Minim(this);
-  //player = minim.loadFile("cheetahmen.mp3", 2048);
-  //player.play();
   size(displayWidth, displayHeight);
+  img = loadImage("background.jpg");
+  img.resize(displayWidth, displayHeight);
+  minim = new Minim(this);
+  player = minim.loadFile("cheetahmen.mp3", 2048);
+  player.play();
+  background(img);
 }
 
 void draw(){
- background(255);
+  if (run){
+    c = c + 1;
+   set(-c, 0, img);
+   //x = constrain(x, 0, img.width - width);
+   //y = constrain(y, 0, img.height - height);
+   //stroke(0,0,0);
+  }
   fill(0,255,0);
   rect(0, controlY, displayWidth, displayHeight - controlY);
   mouseUpdate(mouseX, mouseY);
@@ -197,7 +208,7 @@ void endRun(){
       XVelocity = 0;
       YVelocity = 0;
       run = false;
-      YPosition = controlY - (ferretRad / 2);
+      //YPosition = controlY - (ferretRad / 2);
    }
 }
 
