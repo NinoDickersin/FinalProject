@@ -18,3 +18,5 @@ We are going to make a projectile launch game. The game will feature a launch de
 1/11/15 bounce() now works correctly!  Created a processing file to test the changing of background color when a button is pushed, will eventually become our main screen.
 
 1/12/15 Added a background to the main screen.  Started work on cannon and repaired bugs in bounce().
+
+1/13/15 updated Ferret, cannonPower now determiens velocity, ferret semi-work.  Added scrolling background.
