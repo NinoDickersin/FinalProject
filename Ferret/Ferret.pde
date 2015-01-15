@@ -1,6 +1,9 @@
 import ddf.minim.*;
 int c; //counter for pixels
 PImage img; //used for background image
+int imageCount = 8; //counts number of sprite images
+PImage[] ferretSprite = new PImage[imageCount]; //sprites for ferret
+int spriteCount = 0; //keeps track of what sprite is currently being used
 int x; //Used for background
 int y; //Used for background
 AudioPlayer player; //mp3 player
@@ -30,7 +33,7 @@ int powerSliderIncrement = angleSliderIncrement; //increment of the sliding box
 int sliderAngleNeg = 1; //negation for moving slider box
 int sliderPowerNeg = 1; //negation for other moving slider box
 boolean run = false; //if ferret is in motion
-int ferretRad = 40; //radius of ferret
+int ferretRad = 80; //radius of ferret
 int cannonWidth; //width of cannon
 int cannonLength; //length of cannon
 float cannonAngle = -45; //angle of launch
@@ -143,9 +146,15 @@ void ferretSetup(){
   YVelocity = -1 * cannonPower * sin(radians(cannonAngle));
   }
   oneTime = false;
-  fill(0,0,255);
-  ellipse(XPosition,YPosition,ferretRad,ferretRad);
-  noFill();
+  for(int i = 0; i < imageCount; i++){
+    ferretSprite[i] = loadImage("ferret" + i + ".png");
+  }
+  if(spriteCount >= 7){
+    spriteCount = 0;
+  }else if (run){
+    spriteCount ++;
+  }
+  image(ferretSprite[spriteCount], XPosition,YPosition,ferretRad,ferretRad);
 }
 
 void mouseUpdate(int x, int y){
