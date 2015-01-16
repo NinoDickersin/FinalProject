@@ -20,3 +20,5 @@ We are going to make a projectile launch game. The game will feature a launch de
 1/13/15 updated Ferret, cannonPower now determiens velocity, ferret semi-work. Added scrolling background.
 
 1/14/15 Implemented sprites, scrolling background now updated to work in game.
+
+1/15/15 Implemented start screen, background scrolling speed improved
