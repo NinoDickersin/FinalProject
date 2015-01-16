@@ -1,6 +1,8 @@
 import ddf.minim.*;
-int c; //counter for pixels
-PImage img; //used for background image
+int counter; //counter for pixels
+PImage startScreen; //used for start screen
+boolean startOver = false; //checks if mouse is over start button
+PImage backgroundImg; //used for background image
 int imageCount = 8; //counts number of sprite images
 PImage[] ferretSprite = new PImage[imageCount]; //sprites for ferret
 int spriteCount = 0; //keeps track of what sprite is currently being used
@@ -14,12 +16,12 @@ float XPosition; //X position of ferret
 float YPosition; //Y position of ferret
 float gravity; //Acceleration towards ground
 int controlY = 670;
-int startX = 70;
-int startY = 750; //Start button position
-int startSize = 90; //Size of start button
-color startColor = color(255,255.255); //Color of start button
-color startHighlight = color(100,100,100); //color when highlighted
-boolean startOver = false; //if mouse is over start button
+int runX = 70;
+int runY = 750; //run button position
+int runSize = 90; //Size of run button
+color runColor = color(255,255.255); //Color of run button
+color runHighlight = color(100,100,100); //color when highlighted
+boolean runOver = false; //if mouse is over run button
 int angleSliderX = 170; //x position of angle slider
 int angleSliderY = 710; //y position of angle slider
 boolean angleSliderOver = false; //if mouse is over the angle slider
@@ -39,47 +41,55 @@ int cannonLength; //length of cannon
 float cannonAngle = -45; //angle of launch
 float cannonPower = 20; //power of cannon
 boolean oneTime = true; // makes sure code only runs once
+boolean pressedStart = false; //checks to see if the player has pressed the start button
 void setup(){
   size(displayWidth, displayHeight);
-  img = loadImage("background.jpg");
-  img.resize(displayWidth, displayHeight);
+  backgroundImg = loadImage("background.jpg");
+  backgroundImg.resize(displayWidth, displayHeight);
+  startScreen = loadImage("startScreen.jpg");
+  startScreen.resize(displayWidth, displayHeight);
   minim = new Minim(this);
   player = minim.loadFile("cheetahmen.mp3", 2048);
   player.play();
-  background(img);
+  background(backgroundImg);
 }
 
 void draw(){
+  mouseUpdate(mouseX, mouseY);
+  if (!pressedStart){
+      image(startScreen, 0,0);
+  rect (displayWidth / 2 - 200, displayHeight / 2 - 100, 400, 200);
+  }else{
   if (run){
-    c = c + 1;
-   set(-c, 0, img);
+    counter = counter + int(XVelocity);
+   set(-counter, 0, backgroundImg);
    //x = constrain(x, 0, img.width - width);
    //y = constrain(y, 0, img.height - height);
    //stroke(0,0,0);
   }
   fill(0,255,0);
   rect(0, controlY, displayWidth, displayHeight - controlY);
-  mouseUpdate(mouseX, mouseY);
   angleSlider();
   powerSlider();
-     if (startOver){
-      fill(startHighlight); 
+     if (runOver){
+      fill(runHighlight); 
      }else{
-      fill(startColor); 
+      fill(runColor); 
      }
-  ellipse(startX, startY, startSize, startSize);
+  ellipse(runX, runY, runSize, runSize);
   cannonSetup(100, 50, cannonAngle);
   ferretSetup();
    fill(0,0,0);
    if (run){
    update();
    endRun();
-   rect(startX - 15, startY - 10, 10, 20);
-   rect(startX  + 5, startY - 10, 10, 20);
+   rect(runX - 15, runY - 10, 10, 20);
+   rect(runX  + 5, runY - 10, 10, 20);
    }else{
-   triangle(startX - 10, startY + 10, startX - 10, startY - 10, startX + 15, startY);
+   triangle(runX - 10, runY + 10, runX - 10, runY - 10, runX + 15, runY);
    }
    noFill();
+  }
 }
 
 void stop(){
@@ -89,8 +99,8 @@ void stop(){
 }
 void cannonSetup(int l, int w, float a){
  fill(0,0,0);
- rect (startX, controlY - (w + 20), l, w);
- //translate(startX, controlY - (w + 20));
+ rect (runX, controlY - (w + 20), l, w);
+ //translate(runX, controlY - (w + 20));
  //rotate(radians(a));
  noFill();
 }
@@ -158,10 +168,10 @@ void ferretSetup(){
 }
 
 void mouseUpdate(int x, int y){
-   if(mouseOver(startX, startY, startSize)){//checks for start button
-      startOver = true;
+   if(mouseOver(runX, runY, runSize)){//checks for run button
+      runOver = true;
    } else{
-      startOver = false; 
+      runOver = false; 
    }
    if(mouseX > angleSliderX && mouseX < angleSliderX + 800 && mouseY > angleSliderY && mouseY < angleSliderY + 40){//checks for angle slider
      angleSliderOver = true;
@@ -172,6 +182,11 @@ void mouseUpdate(int x, int y){
      powerSliderOver = true;
    }else{
      powerSliderOver = false; 
+   }
+   if(mouseX > displayWidth / 2 - 200 && mouseX < displayWidth / 2 + 200 && mouseY > displayHeight / 2 - 100 && mouseY < displayHeight / 2 + 100){//checks if mouse is over start button
+    startOver = true; 
+   }else{
+     startOver = false;
    }
 }
 
@@ -199,10 +214,14 @@ void mousePressed() {
    if(powerSliderOver && powerSliderStopped == false){
       powerSliderStopped = true; 
    }
-   if (startOver && run == false){
+   if (runOver && run == false){
      run = true;
-   }else if(startOver && run == true){
+   }else if(runOver && run == true){
      run = false;
+   }
+   if (startOver && pressedStart == false){
+     pressedStart = true;
+     set(-counter, 0, backgroundImg);
    }
 }
 
