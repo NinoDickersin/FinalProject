@@ -42,57 +42,60 @@ float cannonAngle = -45; //angle of launch
 float cannonPower = 20; //power of cannon
 boolean oneTime = true; // makes sure code only runs once
 boolean pressedStart = false; //checks to see if the player has pressed the start button
+boolean moveBackground = false; // Whether or not the background is moving
 void setup(){
   size(displayWidth, displayHeight);
   backgroundImg = loadImage("background.jpg");
   backgroundImg.resize(displayWidth, displayHeight);
   startScreen = loadImage("startScreen.jpg");
   startScreen.resize(displayWidth, displayHeight);
-  minim = new Minim(this);
-  player = minim.loadFile("cheetahmen.mp3", 2048);
-  player.play();
-  background(backgroundImg);
+  playMusic();
+  background(startScreen);
 }
-
 void draw(){
   mouseUpdate(mouseX, mouseY);
   if (!pressedStart){
-      image(startScreen, 0,0);
-  rect (displayWidth / 2 - 200, displayHeight / 2 - 100, 400, 200);
+    rect (displayWidth / 2 - 200, displayHeight / 2 - 100, 400, 200);
   }else{
-  if (run){
-    counter = counter + int(XVelocity);
-   set(-counter, 0, backgroundImg);
-   //x = constrain(x, 0, img.width - width);
-   //y = constrain(y, 0, img.height - height);
-   //stroke(0,0,0);
+    background(backgroundImg);
+    counter += XPosition;
+    set(-frameCount, 0, backgroundImg);
+    x = constrain(x, 0, backgroundImg.width - width);
+    y = constrain(y, 0, backgroundImg.height - height);
+    stroke(0,0,0);
+    controlPanel();
   }
-  fill(0,255,0);
+}
+void controlPanel(){
   rect(0, controlY, displayWidth, displayHeight - controlY);
   angleSlider();
   powerSlider();
-     if (runOver){
-      fill(runHighlight); 
-     }else{
-      fill(runColor); 
-     }
+  if (runOver){
+    fill(runHighlight); 
+  }else{
+    fill(runColor); 
+  }
   ellipse(runX, runY, runSize, runSize);
   cannonSetup(100, 50, cannonAngle);
   ferretSetup();
-   fill(0,0,0);
-   if (run){
-   update();
-   endRun();
-   rect(runX - 15, runY - 10, 10, 20);
-   rect(runX  + 5, runY - 10, 10, 20);
-   }else{
-   triangle(runX - 10, runY + 10, runX - 10, runY - 10, runX + 15, runY);
-   }
-   noFill();
+  fill(0,0,0);
+  if (run){
+    update();
+    endRun();
+    rect(runX - 15, runY - 10, 10, 20);
+    rect(runX  + 5, runY - 10, 10, 20);
+  }else{
+    triangle(runX - 10, runY + 10, runX - 10, runY - 10, runX + 15, runY);
   }
+  noFill();
 }
 
-void stop(){
+void playMusic(){
+  minim = new Minim(this);
+  player = minim.loadFile("cheetahmen.mp3", 2048);
+  player.play();
+}
+void stopMusic(){
   player.close();
   minim.stop();
   super.stop(); 
@@ -149,7 +152,7 @@ void powerSlider(){
 
 void ferretSetup(){
   if(oneTime){
-  XPosition = 40;
+  XPosition = 0;
   YPosition = 480;
   gravity = 1;
   XVelocity = cannonPower * cos(radians(cannonAngle));
@@ -221,7 +224,6 @@ void mousePressed() {
    }
    if (startOver && pressedStart == false){
      pressedStart = true;
-     set(-counter, 0, backgroundImg);
    }
 }
 

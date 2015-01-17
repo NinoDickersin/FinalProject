@@ -9,9 +9,9 @@ public class Item{
   PShape levelButton; //button that levels up the item
   
   void Item(int itemName, int xcor, int ycor){
-  if(itemName = 0){
+  if(itemName == 0){
     itemType = cannon;
-  }else if(itemName = 1){
+  }else if(itemName == 1){
     itemType = jetpack;
   }else{
     itemType = antiGravity;
