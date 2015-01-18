@@ -21,4 +21,10 @@ We are going to make a projectile launch game. The game will feature a launch de
 
 1/14/15 Implemented sprites, scrolling background now updated to work in game.
 
-1/15/15 Implemented start screen, background scrolling speed improved
+1/15/15 Implemented start screen, background scrolling speed improved.
+
+1/16/15 Started working on shop, fixed issue with readme being deleted.
+
+1/17/15 Added helper functions, started to fix how the background loops.
+
+1/18/15 
