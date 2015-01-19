@@ -27,4 +27,6 @@ We are going to make a projectile launch game. The game will feature a launch de
 
 1/17/15 Added helper functions, started to fix how the background loops.
 
-1/18/15 
+1/18/15 Nino is working but has not pushed so I don't know what he has done.
+
+1/19/15Nino is working but has not pushed so I don't know what he has done.
