@@ -22,12 +22,12 @@ void setup(){
   minim = new Minim(this);
   player = minim.loadFile("cheetahmen.mp3", 2048);
   player.play();
-Button start = new Button("Start", 100, 100, displayWidth / 2, displayHeight - 200, color(255,255,255));
-Button run = new Button("Run", 90, 90, 70, 750, color(255,255,255));
-Slider angle = new Slider("Angle", 400, 700);
-Slider power = new Slider("Power", 400, 800);
-Ferret a = new Ferret(10, controlY - 60, 0, 0);
-Cannon launcher = new Cannon(0, controlY - 60);
+  Button start = new Button("Start", 100, 100, displayWidth / 2, displayHeight - 200, color(255,255,255));
+  Button run = new Button("Run", 90, 90, 70, 750, color(255,255,255));
+  Slider angle = new Slider("Angle", 400, 700);
+  Slider power = new Slider("Power", 400, 800);
+  Ferret a = new Ferret(10, controlY - 60, 0, 0);
+  Cannon launcher = new Cannon(0, controlY - 60);
 }
 
 void draw(){
