@@ -26,13 +26,13 @@ Ferret(int xi, int yi, float XVel, float YVel){
   //XVelocity = cannonPower * cos(radians(cannonAngle));
   //YVelocity = -1 * cannonPower * sin(radians(cannonAngle));
   for(int i = 0; i < imageCount; i++){
-    ferretSprite[i] = loadImage("ferret" + i + ".png");
+  ferretSprite[i] = loadImage("ferret" + i + ".png");
   }
 }
-void drawFerret(){
+void drawFerret(boolean running){
   if(spriteCount >= 7){
     spriteCount = 0;
-  }else if (run){
+  }else if (running){
     spriteCount ++;
   }
   image(ferretSprite[spriteCount], XPosition,YPosition,ferretRad,ferretRad);
