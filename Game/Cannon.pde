@@ -15,16 +15,16 @@ public class Cannon{
 	cannonAngle = 45;
     }
     void setAngle(int a){
-	cannonAngle = a;
+	cannonAngle = float(a);
         spriteCount = (a / 10) - 1;
     }
     void setPower(int p){
-	cannonPower = p;
+	cannonPower = float(p);
     }
-    float getAngle(int a){
+    float getAngle(){
 	return cannonAngle;
     }
-    float getPower(int p){
+    float getPower(){
 	return cannonPower;
     }
     
