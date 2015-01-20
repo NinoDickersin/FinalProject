@@ -29,8 +29,7 @@ void mouseUpdate(int x, int y){
 }
 
 void drawButton(){
-  PShape button = createShape(ELLIPSE, 0, 0, h, w);
-  shape(button, XPosition, YPosition);
+  ellipse(XPosition, YPosition, h, w);
   textSize(20);
   textAlign(CENTER);
   text(t, XPosition, YPosition);

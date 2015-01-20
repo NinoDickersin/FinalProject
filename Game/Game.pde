@@ -1,3 +1,6 @@
+  import ddf.minim.*;
+  AudioPlayer player; //mp3 player
+  Minim minim; //audio context
 int counter; //counter for pixels
 PImage backgroundImg; //used for background image
 PImage startScreen; //used for start screen
@@ -15,8 +18,9 @@ void setup(){
   startScreen = loadImage("startScreen.jpg");
   startScreen.resize(displayWidth, displayHeight);
   background(startScreen);
-  Music b = new Music("cheetahmen.mp3");
-  b.play();
+  minim = new Minim(this);
+  player = minim.loadFile("cheetahmen.mp3", 2048);
+  player.play();
 }
 
 void draw(){
@@ -60,6 +64,12 @@ void draw(){
      noFill();
   }
 }
+
+  void stop(){
+    player.close();
+    minim.stop();
+    super.stop();
+  }
 
 
 
