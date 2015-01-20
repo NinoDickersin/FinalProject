@@ -1,0 +1,16 @@
+  PImage img;
+  int x;
+  int y;
+void setup(){
+  size(700, 1080);
+  img = loadImage("background.jpg");
+  background(0);
+}
+void draw(){
+  x = constrain(x,0,img.width - width);
+  y = constrain(y,0,img.height - height);
+  set(-x, 0, img);
+  x = frameCount;
+  stroke(0,0,0);
+}
+  
