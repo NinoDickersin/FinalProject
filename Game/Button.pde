@@ -5,6 +5,7 @@ public class Button{
   int w; //width
   boolean buttonPressed = false; //if it has been pressed
   boolean buttonOver = false; //if the mouse is over the button
+  String t; //text for button
   
     
     Button(String t, int h, int w, int xpos, int ypos){
@@ -12,32 +13,33 @@ public class Button{
         YPosition = ypos;
         this.h = h;
         this.w = w;
+        this.t = t;
 	drawButton();
     }
 
 
-boolean mouseOver(int x, int y, int d){
+void mouseUpdate(int x, int y){
    float disX = x - mouseX;
     float disY = y - mouseY;
-   if(sqrt(sq(disX) + sq(disY)) < d/2){
-    return true;
+   if(sqrt(sq(disX) + sq(disY)) < w/2){ //h and w are the same so this should be ok
+    buttonOver = true;
    }else{
-    return false;
+    buttonOver = false;
    } 
 }
 
 void drawButton(){
-  PShape button = createShape(CIRCLE, 0, 0, h, w);
-  shape(s, XPosition, YPosition);
-  textsize(20);
+  PShape button = createShape(ELLIPSE, 0, 0, h, w);
+  shape(button, XPosition, YPosition);
+  textSize(20);
   textAlign(CENTER);
   text(t, XPosition, YPosition);
 }
 
 void mousePressed() {
-   if(mouseOver(XPosition, YPosition, diameter) && buttonPressed = false){
+   if(buttonOver && buttonPressed == false){
     buttonPressed = true;
-   }else if (mouseOver(XPosition, YPosition, diameter && buttonPressed = true)){
+   }else if (buttonOver && buttonPressed == true){
     buttonPressed = false; 
    }
 }

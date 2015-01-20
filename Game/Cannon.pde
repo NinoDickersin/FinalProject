@@ -9,7 +9,7 @@ public class Cannon{
 
     Cannon(int XPosition, int YPosition){
         for(int i = 0; i < imageCount; i++){
-          ferretSprite[i] = loadImage("cannon" + i + ".png");
+          cannonSprite[i] = loadImage("cannon" + i + ".png");
         }
 	cannonPower = 100;
 	cannonAngle = 45;
@@ -21,14 +21,14 @@ public class Cannon{
     void setPower(int p){
 	cannonPower = p;
     }
-    int getAngle(int a){
+    float getAngle(int a){
 	return cannonAngle;
     }
-    int getPower(int p){
+    float getPower(int p){
 	return cannonPower;
     }
     
     void drawCannon(){
-     image(cannonSprite[spriteCount], XPosition, YPosition); 
+     image(cannonSprite[spriteCount], xpos, ypos); 
     }
 }

@@ -3,7 +3,7 @@ public class Music{
   AudioPlayer player; //mp3 player
   Minim minim; //audio context
   
-  MusicPlayer(String filename){
+  Music(String filename){
     minim = new Minim(this);
     player = minim.loadFile(filename, 2048);
   }
@@ -15,6 +15,5 @@ public class Music{
   void stop(){
     player.close();
     minim.stop();
-    super.stop(); 
   }
 }

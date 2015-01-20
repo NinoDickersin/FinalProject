@@ -39,7 +39,7 @@ void drawFerret(){
 }
   
   void movement(){
-  setYVel(getYVel - gravity);
+  setYVel(getYVel() - gravity);
   XPosition += getXVel();
   YPosition -= getYVel();
   bounce();
@@ -52,29 +52,30 @@ void drawFerret(){
       setYVel(0);
       return false;
       }
+      return true;
   }
-  void setXVel(int x){
-    XVel = x;
+  void setXVel(float x){
+    XVelocity = x;
   }
-  void setYVel(int y){
-    YVel = y;
+  void setYVel(float y){
+    YVelocity = y;
   }
-  int getXVel(){
-    return XVel;
+  float getXVel(){
+    return XVelocity;
   }
-  int getYVel(){
-    return YVel;
+  float getYVel(){
+    return YVelocity;
   }
-  void setXPos(int x){
-    XPos = x;
+  void setXPos(float x){
+    XPosition = x;
   }
-  void setYPos(int y){
-    YPos = y;
+  void setYPos(float y){
+    YPosition = y;
   }
-  int getXVel(){
-    return XVel;
+  float getXPos(){
+    return XPosition;
   }
-  int getYVel(){
-    return YVel;
+  float getYPos(){
+    return YPosition;
   }
 }
