@@ -10,14 +10,6 @@ int imageCount = 8; //counts number of sprite images
 PImage[] ferretSprite = new PImage[imageCount]; //sprites for ferret
 int spriteCount = 0; //keeps track of what sprite is currently being used
   
-  void bounce(){
-   if (YPosition >= controlY - (ferretRad / 2)) {
-    setYVel(- 1 * 3 * YVelocity / 4);
-    setXVel(getXVel() - 2);
-  }
-  } 
-  
-  
 Ferret(int xi, int yi, float XVel, float YVel){
   XPosition = xi;
   YPosition = yi;
@@ -44,6 +36,13 @@ void drawFerret(boolean running){
   YPosition -= getYVel();
   bounce();
   endRun(); 
+  }
+  
+  void bounce(){
+   if (YPosition >= controlY - (ferretRad / 2)) {
+    setYVel(- 1 * 3 * YVelocity / 4);
+    setXVel(getXVel() - 2);
+  }
   }
   
   boolean endRun(){

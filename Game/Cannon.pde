@@ -1,4 +1,4 @@
-public class Cannon{
+public class Cannon extends Item{
   int imageCount = 9; //counts number of sprite images
   PImage[] cannonSprite = new PImage[imageCount]; //sprites for cannon
   int spriteCount = 0; //keeps track of what sprite is currently being used
@@ -8,10 +8,13 @@ public class Cannon{
   int ypos; //yposition of cannon
 
     Cannon(int XPosition, int YPosition){
+        super(0);
         for(int i = 0; i < imageCount; i++){
           cannonSprite[i] = loadImage("cannon" + i + ".png");
         }
-	cannonPower = 100;
+        xpos = XPosition;
+        ypos = YPosition;
+	cannonPower = 1;
 	cannonAngle = 45;
     }
     void setAngle(int a){
@@ -31,4 +34,12 @@ public class Cannon{
     void drawCannon(){
      image(cannonSprite[spriteCount], xpos, ypos); 
     }
+    
+    void buy(){
+    if(canBuy()){
+      level += 1;
+      setPower(int(this.getPower() + 1));
+    }
+    }
+    
 }
