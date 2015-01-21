@@ -17,7 +17,6 @@ Cannon launcher;
 Cannon jetpack;
 Button cannonLevel;
 Button jetpackLevel;
-int score; // the amount of coins the ferret generates on a flight
 boolean oneTime = true;
 PImage jetpackSprite = loadImage("jetpack0.png");
 
@@ -88,7 +87,10 @@ void draw(){
      noFill();
   }
     if (a.endRun() == false){
-      rect(displayWidth / 6, displayWidth / 6, displayWidth / 4, displayWidth / 4);
+      fill(50,150,200);
+      rect(displayWidth / 2 - 500, displayHeight / 2 - 500, 600, 600);
+      a.setScore(a.getXPos);
+      text("Your score for this flight is" + a.getScore(), displayWidth / 2 - 600, displayHeight / 2 - 600);
     }
 }
   void stop(){
@@ -160,8 +162,8 @@ void draw(){
    
    void keyPressed(){
      if (key == ' ' && running && oneTime){
-        a.setXVel(a.getXVel() + (jetpack.getPower() * cos(radians(15))) / 4);
-        a.setYVel(a.getYVel() + jetpack.getPower() * sin(radians(15))); 
+        a.setXVel(a.getXVel() + jetpack.getPower() * cos(radians(45)));
+        a.setYVel(a.getYVel() + jetpack.getPower() * cos(radians(45))); 
         oneTime = false;
         image(jetpackSprite, a.getXPos(), a.getYPos());
      }

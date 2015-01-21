@@ -9,7 +9,8 @@ float gravity = 1; //Acceleration towards ground
 int imageCount = 8; //counts number of sprite images
 PImage[] ferretSprite = new PImage[imageCount]; //sprites for ferret
 int spriteCount = 0; //keeps track of what sprite is currently being used
-  
+int score; // the amount of coins the ferret generates on a flight
+
 Ferret(int xi, int yi, float XVel, float YVel){
   XPosition = xi;
   YPosition = yi;
@@ -74,4 +75,11 @@ void drawFerret(boolean running){
   float getYPos(){
     return YPosition;
   }
+  float getScore(){
+    return XPosition;
+  }
+  float setScore(float newScore){
+    score = newScore;
+  }
+  
 }
