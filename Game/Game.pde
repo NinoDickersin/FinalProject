@@ -16,7 +16,6 @@ Ferret a;
 Cannon launcher;
 Button cannonLevel;
 Button jetpackLevel;
-int score; // the amount of coins the ferret generates on a flight
 
 void setup(){
   size(displayWidth, displayHeight);
@@ -79,9 +78,6 @@ void draw(){
     }
      noFill();
   }
-   if (a.endRun()){
-    rect(100,100,100,100);
-}
 }
 
   void stop(){
@@ -121,8 +117,8 @@ void draw(){
        launcher.setAngle(90);       
      }
      launcher.drawCannon();
-     a.setXPos(cos(radians(launcher.getAngle())) * 200);
-     a.setYPos(displayHeight - 400 - 200 * (tan(radians(launcher.getAngle())))); //* (200 * sin(radians(launcher.getAngle())))); //I never thought trig would have real world applications
+     a.setXPos(100 + cos(radians(launcher.getAngle())) * 200);
+     a.setYPos(displayHeight - 250 - 200 * (sin(radians(launcher.getAngle())))); //* (200 * sin(radians(launcher.getAngle())))); //I never thought trig would have real world applications
      a.drawFerret(false);
    }
    if(power.getMouseOver() && !power.getPressed()){
