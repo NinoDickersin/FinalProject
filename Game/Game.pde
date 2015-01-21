@@ -6,6 +6,7 @@ PImage backgroundImg; //used for background image
 PImage startScreen; //used for start screen
 int x; //Used for background
 int y; //Used for background
+int numberOfLoops = 0; //Used for background
 boolean running = false; //if ferret is in motion
 Button start;
 Button run;
@@ -19,7 +20,7 @@ Button jetpackLevel;
 void setup(){
   size(displayWidth, displayHeight);
   backgroundImg = loadImage("background.jpg");
-  backgroundImg.resize(displayWidth, displayHeight);
+  backgroundImg.resize(displayWidth * 2, displayHeight);
   startScreen = loadImage("startScreen.jpg");
   startScreen.resize(displayWidth, displayHeight);
   background(startScreen);
@@ -47,12 +48,15 @@ void draw(){
     power.mouseUpdate(mouseX, mouseY);
     angle.increment();
     power.increment();
-    background(backgroundImg);
-    counter += a.getXPos();
-    set(-frameCount, 0, backgroundImg);
     x = constrain(x, 0, backgroundImg.width - width);
     y = constrain(y, 0, backgroundImg.height - height);
+    if (x == backgroundImg.width - width){
+      numberOfLoops += 1;
+      x = 0;
+    }
+    set(-x, 0, backgroundImg);
     stroke(0,0,0);
+    x = frameCount - ((backgroundImg.width - width) * numberOfLoops);
     fill(0, 153, 76);
     rect(0, displayHeight - 300, displayWidth, 300);
     noFill();
