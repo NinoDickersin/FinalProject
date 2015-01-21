@@ -87,11 +87,14 @@ void draw(){
     }
      noFill();
   }
-    if (a.endRun() == false){
+    if (!a.endRun()){
       fill(50,150,200);
-      rect(displayWidth / 2 - 500, displayHeight / 2 - 500, 600, 600);
+      rect(displayWidth / 2 - 500, displayHeight / 2 - 500, 800, 800);
       a.setScore(a.getXPos());
-      text("Your score for this flight is" + a.getScore(), displayWidth / 2 - 600, displayHeight / 2 - 600);
+      fill(0,0,0);
+      textSize(32);
+      text("Your score for this flight is " + int(a.getScore()), displayWidth / 2 - 100, displayHeight / 2 - 400);
+      noFill();
     }
 }
   void stop(){
