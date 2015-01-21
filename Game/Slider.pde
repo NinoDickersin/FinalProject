@@ -8,6 +8,8 @@ public class Slider extends Clickable{
    }
   
     void drawSlider(){
+      textAlign(CENTER);
+      text (t, XPosition + w / 2, YPosition - 10);
       fill(255,255,255);
       rect(XPosition, YPosition, w, h);
       fill(128,255,0);
