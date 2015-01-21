@@ -70,6 +70,7 @@ void draw(){
       a.setXVel(launcher.getPower() * cos(radians(launcher.getAngle())));
       a.setYVel(launcher.getPower() * sin(radians(launcher.getAngle())));  
     }
+    jetpack.setPower(4);
     a.drawFerret(running);
     launcher.drawCannon();
     fill(0,0,0);
@@ -159,7 +160,7 @@ void draw(){
    void keyPressed(){
      if (key == ' ' && running && oneTime){
         a.setXVel(a.getXVel() + jetpack.getPower() * cos(radians(45)));
-        a.setYVel(a.getYVel() + jetpack.getPower() * cos(radians(45))); 
+        a.setYVel(a.getYVel() + jetpack.getPower() * sin(radians(45))); 
         oneTime = false;
      }
    }
