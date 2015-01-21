@@ -60,11 +60,10 @@ void draw(){
     fill(0, 153, 76);
     rect(0, displayHeight - 300, displayWidth, 300);
     noFill();
-    running = run.getPressed();
     run.drawButton();
     angle.drawSlider();
     power.drawSlider();
-    if(a.getXVel() == 0 && a.getYVel() == 0 && angle.getPressed() && power.getPressed()){
+    if(a.getXVel() == 0 && a.getYVel() == 0 && angle.getPressed() && power.getPressed() && running){
       a.setXVel(launcher.getPower() * cos(radians(launcher.getAngle())));
       a.setYVel(launcher.getPower() * sin(radians(launcher.getAngle())));  
     }
@@ -82,7 +81,7 @@ void draw(){
     }
      noFill();
   }
-    if (a.endRun()){
+    if (!a.endRun()){
     rect(100,100,100,100);
 }
 }
@@ -99,8 +98,10 @@ void draw(){
    }
    if (run.getMouseOver() && !run.getPressed()){
      run.setPressed(true);
+     running = true;
    }else if(run.getMouseOver() && run.getPressed()){
      run.setPressed(false);
+     running = false;
    }
    if(angle.getMouseOver() && !angle.getPressed()){
      angle.setPressed(true);
