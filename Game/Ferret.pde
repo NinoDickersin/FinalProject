@@ -25,7 +25,7 @@ void drawFerret(boolean running){
   }else if (running){
     spriteCount ++;
   }
-  image(ferretSprite[spriteCount], XPosition,YPosition,ferretRad,ferretRad);
+  image(ferretSprite[spriteCount], XPosition, YPosition, ferretRad, ferretRad);
 }
   
   void movement(){

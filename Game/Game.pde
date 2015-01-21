@@ -19,6 +19,7 @@ Button cannonLevel;
 Button jetpackLevel;
 int score; // the amount of coins the ferret generates on a flight
 boolean oneTime = true;
+PImage jetpackSprite = loadImage("jetpack0.png");
 
 void setup(){
   size(displayWidth, displayHeight);
@@ -162,6 +163,7 @@ void draw(){
         a.setXVel(a.getXVel() + (jetpack.getPower() * cos(radians(15))) / 4);
         a.setYVel(a.getYVel() + jetpack.getPower() * sin(radians(15))); 
         oneTime = false;
+        image(jetpackSprite, a.getXPos(), a.getYPos());
      }
    }
 
