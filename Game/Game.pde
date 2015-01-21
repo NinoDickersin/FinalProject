@@ -48,6 +48,9 @@ void setup(){
 }
 
 void draw(){
+  if(a.endRun()){
+  restart.setPressed(true);
+  }
   if (!start.getPressed()){
     start.mouseUpdate(mouseX, mouseY);
     image(startScreen, 0,0);
@@ -56,6 +59,7 @@ void draw(){
     run.mouseUpdate(mouseX, mouseY); 
     angle.mouseUpdate(mouseX, mouseY);
     power.mouseUpdate(mouseX, mouseY);
+    restart.mouseUpdate(mouseX, mouseY);
     angle.increment();
     power.increment();
     x = constrain(x, 0, backgroundImg.width - width);
@@ -104,6 +108,7 @@ void draw(){
       text("You have " + a.getCoins() + " coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
       noFill();
       restart.drawButton();
+      restart.setPressed(false);
     }
 }
   void stop(){
@@ -113,7 +118,7 @@ void draw(){
   }
   
    void mousePressed(){
-     //I hate minim and everything about it. setVolume() did not work. mute() did not work. pause() did not work.
+   //I hate minim and everything about it. setVolume() did not work. mute() did not work. pause() did not work.
    /*
      if (mute.getMouseOver() && !mute.getPressed()){
      player.pause();
@@ -134,20 +139,13 @@ void draw(){
      running = false;
    }
    if (restart.getMouseOver() && !restart.getPressed()){
-     x = constrain(x, 0, backgroundImg.width - width);
-    if (x == backgroundImg.width - width){
-      numberOfLoops += 1;
-      x = 0;
-    }
-    set(-x, 0, backgroundImg);
-    stroke(0,0,0);
-    x = frameCount - ((backgroundImg.width - width) * numberOfLoops);
+     restart.setPressed(true);
     fill(0, 153, 76);
     rect(0, displayHeight - 300, displayWidth, 300);
     noFill();
      running = false;
-     a.setXPos(0);
-     a.setYPos(0);
+     a.setXPos(20);
+     a.setYPos(displayHeight - 400);
      angle.setPressed(false);
      power.setPressed(false);
      makeSureOnlyOnce = 0;
