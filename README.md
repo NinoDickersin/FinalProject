@@ -31,4 +31,4 @@ We are going to make a projectile launch game. The game will feature a launch de
 
 1/19/15 Split up the mess that was our Ferret file into many classes.  We added the initial shop class.
 
-1/20/15 Background scrolling actually works this time.  
+1/20/15 Background scrolling actually works this time.  We added several features including a jetpack.  Nino will give a final report below.
