@@ -30,8 +30,8 @@ void setup(){
   run = new Button("Run", 90, 90, 70, displayHeight - 200, color(255,255,255));
   angle = new Slider("Angle", 400, displayHeight - 200);
   power = new Slider("Power", 400, displayHeight - 270);
+  a = new Ferret(20, displayHeight - 400, 0, 0);
   launcher = new Cannon(0, displayHeight - 500);
-  a = new Ferret(20, displayHeight - 500, 0, 0);
   cannonLevel = new Button("Cannon Upgrade", 100, 100, 300, 300, color(255,255,255));
   jetpackLevel = new Button("Jetpack Upgrade", 100, 100, 100, 100, color(255,255,255));
 }
@@ -60,12 +60,12 @@ void draw(){
     run.drawButton();
     angle.drawSlider();
     power.drawSlider();
-    launcher.drawCannon();
     if(a.getXVel() == 0 && a.getYVel() == 0 && angle.getPressed() && power.getPressed()){
       a.setXVel(launcher.getPower() * cos(radians(launcher.getAngle())));
       a.setYVel(launcher.getPower() * sin(radians(launcher.getAngle())));  
     }
     a.drawFerret(running);
+    launcher.drawCannon();
     fill(0,0,0);
     if (running && angle.getPressed() && power.getPressed()){
        a.movement();
@@ -113,7 +113,10 @@ void draw(){
      }else{
        launcher.setAngle(90);       
      }
-     launcher.drawCannon();   
+     launcher.drawCannon();
+     a.setXPos(1);
+     a.setYPos(displayHeight - 400);
+     a.drawFerret(false);
    }
    if(power.getMouseOver() && !power.getPressed()){
      power.setPressed(true);
