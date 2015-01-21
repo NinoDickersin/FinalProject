@@ -69,6 +69,8 @@ void draw(){
       a.setXVel(launcher.getPower() * cos(radians(launcher.getAngle())));
       a.setYVel(launcher.getPower() * sin(radians(launcher.getAngle())));  
     }
+    jetpack.setPower(1);
+    text("Press SPACE to activate jetpack", displayWidth / 2, displayHeight - 120);
     a.drawFerret(running);
     launcher.drawCannon();
     fill(0,0,0);
