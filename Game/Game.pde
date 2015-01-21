@@ -49,7 +49,6 @@ void draw(){
     angle.increment();
     power.increment();
     x = constrain(x, 0, backgroundImg.width - width);
-    y = constrain(y, 0, backgroundImg.height - height);
     if (x == backgroundImg.width - width){
       numberOfLoops += 1;
       x = 0;
