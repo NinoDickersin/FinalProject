@@ -134,16 +134,29 @@ void draw(){
      running = false;
    }
    if (restart.getMouseOver() && !restart.getPressed()){
+     x = constrain(x, 0, backgroundImg.width - width);
+    if (x == backgroundImg.width - width){
+      numberOfLoops += 1;
+      x = 0;
+    }
+    set(-x, 0, backgroundImg);
+    stroke(0,0,0);
+    x = frameCount - ((backgroundImg.width - width) * numberOfLoops);
+    fill(0, 153, 76);
+    rect(0, displayHeight - 300, displayWidth, 300);
+    noFill();
      running = false;
      a.setXPos(0);
      a.setYPos(0);
-     a.drawFerret();
-     launcher.drawCannon();
      angle.setPressed(false);
      power.setPressed(false);
-     //get rid of that rectangle
-     //don't change coins
-     //reset jetpack
+     makeSureOnlyOnce = 0;
+     run.setPressed(false);
+     oneTime = true;
+     a.drawFerret(running);
+     launcher.drawCannon();
+     angle.drawSlider();
+     power.drawSlider();
    }
    if(angle.getMouseOver() && !angle.getPressed()){
      angle.setPressed(true);

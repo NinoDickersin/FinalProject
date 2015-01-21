@@ -8,18 +8,16 @@ public class Cannon extends Item{
   int ypos; //yposition of cannon
 
     Cannon(int XPosition, int YPosition){
-        super(0);
+        this();
         for(int i = 0; i < imageCount; i++){
           cannonSprite[i] = loadImage("cannon" + i + ".png");
         }
         xpos = XPosition;
         ypos = YPosition;
-	cannonPower = 1;
-	cannonAngle = 45;
     }
     
     Cannon(){
-      super(0);
+      level = 0;
       cannonPower = 1;
       cannonAngle = 45;
     }
@@ -45,7 +43,7 @@ public class Cannon extends Item{
     }
     
     void buy(){
-    if(canBuy()){
+    if(canBuy(level * 1000)){
       level += 1;
       setPower(int(this.getPower() + 1));
     }
