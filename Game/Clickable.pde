@@ -6,7 +6,6 @@ public abstract class Clickable{
    boolean pressed = false; //if clickable has been pressed
    int h; //height of clickable
    int w; //width of clickable
-   boolean wackyBanana;
    
    Clickable(int x, int y, int h, int w, String t){
      XPosition = x;

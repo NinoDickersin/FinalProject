@@ -17,6 +17,7 @@ Cannon launcher;
 Cannon jetpack;
 Button cannonLevel;
 Button jetpackLevel;
+Button mute;
 boolean oneTime = true;
 PImage jetpackSprite;
 
@@ -30,16 +31,17 @@ void setup(){
   minim = new Minim(this);
   player = minim.loadFile("cheetahmen.mp3", 2048);
   player.play();
-  start = new Button("Start", 200, 200, displayWidth / 2 - 100, displayHeight - 300, color(255,255,255));
-  run = new Button("Run", 90, 90, 70, displayHeight - 200, color(255,255,255));
+  start = new Button("Start", 200, 200, displayWidth / 2 - 100, displayHeight - 300);
+  run = new Button("Run", 90, 90, 70, displayHeight - 200);
+  mute = new Button ("Mute", 90, 90, displayWidth - 200, displayHeight - 200);
   angle = new Slider("Angle", 400, displayHeight - 200);
   power = new Slider("Power", 400, displayHeight - 270);
   a = new Ferret(20, displayHeight - 400, 0, 0);
   launcher = new Cannon(0, displayHeight - 500);
   jetpack = new Cannon();
   jetpackSprite = loadImage("jetpack0.png");
-  cannonLevel = new Button("Cannon Upgrade", 100, 100, 300, 300, color(255,255,255));
-  jetpackLevel = new Button("Jetpack Upgrade", 100, 100, 100, 100, color(255,255,255));
+  cannonLevel = new Button("Cannon Upgrade", 100, 100, 300, 300);
+  jetpackLevel = new Button("Jetpack Upgrade", 100, 100, 100, 100);
 }
 
 void draw(){
@@ -67,6 +69,7 @@ void draw(){
     run.drawButton();
     angle.drawSlider();
     power.drawSlider();
+    mute.drawButton();
     if(a.getXVel() == 0 && a.getYVel() == 0 && angle.getPressed() && power.getPressed() && running){
       a.setXVel(launcher.getPower() * cos(radians(launcher.getAngle())));
       a.setYVel(launcher.getPower() * sin(radians(launcher.getAngle())));  
@@ -78,9 +81,6 @@ void draw(){
     fill(0,0,0);
     if (running && angle.getPressed() && power.getPressed()){
        a.movement();
-       //set color of button to signify playing
-    }else{
-       //set color of button to signify paused
     }
     if(!a.endRun()){
        running = false; 
@@ -104,6 +104,13 @@ void draw(){
   }
   
    void mousePressed(){
+   if (mute.getMouseOver() && !mute.getPressed()){
+     player.mute();
+     mute.setPressed(true);
+   }else if(mute.getMouseOver() && mute.getPressed()){
+     player.unmute();
+     mute.setPressed(false);
+   }
    if(start.getMouseOver() && !start.getPressed()){
     start.setPressed(true);
    }

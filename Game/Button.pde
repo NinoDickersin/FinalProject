@@ -4,9 +4,9 @@ public class Button extends Clickable{
   color c; //color of button
   
     
-    Button(String t, int h, int w, int xpos, int ypos, color c){
+    Button(String t, int h, int w, int xpos, int ypos){
         super(xpos, ypos, h, w, t);
-        this.c = c;
+        c = color(255,255,255);
         this.h = h;
         this.w = w;
 	drawButton();
