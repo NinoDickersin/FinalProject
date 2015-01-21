@@ -42,8 +42,8 @@ void setup(){
   launcher = new Cannon(0, displayHeight - 500);
   jetpack = new Cannon();
   jetpackSprite = loadImage("jetpack0.png");
-  cannonLevel = new Button("Cannon Upgrade", 100, 100, 300, 300);
-  jetpackLevel = new Button("Jetpack Upgrade", 100, 100, 100, 100);
+  cannonLevel = new Button("Cannon Upgrade", 100, 100, displayWidth / 2 - 450, 400);
+  jetpackLevel = new Button("Jetpack Upgrade", 100, 100, displayWidth / 2 - 450, 250);
   makeSureOnlyOnce = 0;
 }
 
@@ -107,8 +107,8 @@ void draw(){
       }
       text("You have " + a.getCoins() + " coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
       noFill();
-      jetpackLevel.drawButton();
       cannonLevel.drawButton();
+      jetpackLevel.drawButton();
       restart.drawButton();
       restart.setPressed(false);
     }
