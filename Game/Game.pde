@@ -34,8 +34,8 @@ void setup(){
   player.play();
   start = new Button("Start", 200, 200, displayWidth / 2 - 100, displayHeight - 300);
   run = new Button("Run", 90, 90, 70, displayHeight - 200);
-  mute = new Button ("Mute", 90, 90, displayWidth - 200, displayHeight - 200);
-  goToShop =  new Button("Go To Shop", 200, 200, displayWidth / 2, displayHeight / 2 - 300);
+  mute = new Button ("Mute", 90, 90, displayWidth - 400, displayHeight - 250);
+  goToShop = new Button("Go To Shop", 200, 200, displayWidth / 2, displayHeight / 2 - 300);
   angle = new Slider("Angle", 400, displayHeight - 200);
   power = new Slider("Power", 400, displayHeight - 270);
   a = new Ferret(20, displayHeight - 400, 0, 0);
