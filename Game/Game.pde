@@ -16,6 +16,7 @@ Ferret a;
 Cannon launcher;
 Button cannonLevel;
 Button jetpackLevel;
+int score; // the amount of coins the ferret generates on a flight
 
 void setup(){
   size(displayWidth, displayHeight);
@@ -78,6 +79,9 @@ void draw(){
     }
      noFill();
   }
+    if (a.endRun()){
+    rect(100,100,100,100);
+}
 }
 
   void stop(){
