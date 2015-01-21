@@ -18,7 +18,7 @@ Cannon launcher;
 Cannon jetpack;
 Button cannonLevel;
 Button jetpackLevel;
-Button mute;
+//Button mute;
 boolean oneTime = true;
 PImage jetpackSprite;
 
@@ -33,8 +33,8 @@ void setup(){
   player = minim.loadFile("cheetahmen.mp3", 2048);
   player.play();
   start = new Button("Start", 200, 200, displayWidth / 2 - 100, displayHeight - 300);
-  run = new Button("Run", 90, 90, 70, displayHeight - 200);
-  mute = new Button ("Mute", 90, 90, displayWidth - 400, displayHeight - 250);
+  run = new Button("Run", 90, 90, 70, displayHeight - 250);
+  //mute = new Button ("Mute", 90, 90, displayWidth - 400, displayHeight - 250);
   goToShop = new Button("Go To Shop", 200, 200, displayWidth / 2, displayHeight / 2 - 300);
   angle = new Slider("Angle", 400, displayHeight - 200);
   power = new Slider("Power", 400, displayHeight - 270);
@@ -104,10 +104,7 @@ void draw(){
       text("You have " + a.getCoins() + " coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
       noFill();
       goToShop.drawButton();
-      if (goToShop.getPressed() == true){
-        rect(300,300,300,300);
     }
-}
 }
   void stop(){
     player.close();
@@ -116,18 +113,18 @@ void draw(){
   }
   
    void mousePressed(){
-   if (mute.getMouseOver() && !mute.getPressed()){
-     player.mute();
+     //I hate minim and everything about it. setVolume() did not work. mute() did not work. pause() did not work.
+   /*
+     if (mute.getMouseOver() && !mute.getPressed()){
+     player.pause();
      mute.setPressed(true);
    }else if(mute.getMouseOver() && mute.getPressed()){
-     player.unmute();
+     player.play();
      mute.setPressed(false);
    }
+   */
    if(start.getMouseOver() && !start.getPressed()){
     start.setPressed(true);
-   }
-   if(goToShop.getMouseOver() && !goToShop.getPressed()){
-    goToShop.setPressed(true);
    }
    if (run.getMouseOver() && !run.getPressed()){
      run.setPressed(true);
