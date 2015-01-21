@@ -1,7 +1,7 @@
 import ddf.minim.*;
 AudioPlayer player; //mp3 player
 Minim minim; //audio context
-int counter; //counter for pixels
+int makeSureOnlyOnce; // used so coins compute once per draw
 PImage backgroundImg; //used for background image
 PImage startScreen; //used for start screen
 int x; //Used for background
@@ -44,6 +44,7 @@ void setup(){
   jetpackSprite = loadImage("jetpack0.png");
   cannonLevel = new Button("Cannon Upgrade", 100, 100, 300, 300);
   jetpackLevel = new Button("Jetpack Upgrade", 100, 100, 100, 100);
+  makeSureOnlyOnce = 0;
 }
 
 void draw(){
@@ -96,8 +97,11 @@ void draw(){
       fill(0,0,0);
       textSize(32);
       text("Your score for this flight is " + int(a.getScore()), displayWidth / 2 - 100, displayHeight / 2 - 400);
+      if (makeSureOnlyOnce == 0){
       a.setCoins(a.getScore());
-      text("You have " + a.getCoins() + "coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
+      makeSureOnlyOnce += 1;
+      }
+      text("You have " + a.getCoins() + " coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
       noFill();
       goToShop.drawButton();
     }
