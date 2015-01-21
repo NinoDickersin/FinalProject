@@ -18,7 +18,7 @@ Cannon jetpack;
 Button cannonLevel;
 Button jetpackLevel;
 boolean oneTime = true;
-PImage jetpackSprite = loadImage("jetpack0.png");
+PImage jetpackSprite;
 
 void setup(){
   size(displayWidth, displayHeight);
@@ -37,6 +37,7 @@ void setup(){
   a = new Ferret(20, displayHeight - 400, 0, 0);
   launcher = new Cannon(0, displayHeight - 500);
   jetpack = new Cannon();
+  jetpackSprite = loadImage("jetpack0.png");
   cannonLevel = new Button("Cannon Upgrade", 100, 100, 300, 300, color(255,255,255));
   jetpackLevel = new Button("Jetpack Upgrade", 100, 100, 100, 100, color(255,255,255));
 }
@@ -89,7 +90,7 @@ void draw(){
     if (a.endRun() == false){
       fill(50,150,200);
       rect(displayWidth / 2 - 500, displayHeight / 2 - 500, 600, 600);
-      a.setScore(a.getXPos);
+      a.setScore(a.getXPos());
       text("Your score for this flight is" + a.getScore(), displayWidth / 2 - 600, displayHeight / 2 - 600);
     }
 }
@@ -165,7 +166,7 @@ void draw(){
         a.setXVel(a.getXVel() + jetpack.getPower() * cos(radians(45)));
         a.setYVel(a.getYVel() + jetpack.getPower() * cos(radians(45))); 
         oneTime = false;
-        image(jetpackSprite, a.getXPos(), a.getYPos());
+        image(jetpackSprite, a.getXPos() - 300, a.getYPos() - 100);
      }
    }
 
