@@ -60,6 +60,8 @@ void draw(){
     angle.mouseUpdate(mouseX, mouseY);
     power.mouseUpdate(mouseX, mouseY);
     restart.mouseUpdate(mouseX, mouseY);
+    cannonLevel.mouseUpdate(mouseX, mouseY);
+    jetpackLevel.mouseUpdate(mouseX, mouseY);
     angle.increment();
     power.increment();
     x = constrain(x, 0, backgroundImg.width - width);
@@ -140,6 +142,18 @@ void draw(){
      run.setPressed(false);
      running = false;
    }
+   if (cannonLevel.getMouseOver() && !cannonLevel.getPressed()){
+     cannonLevel.setPressed(true);
+     if (canBuy(1000)){
+       buy(1000);
+   }
+   }
+   if (jetpackLevel.getMouseOver() && !jetpackLevel.getPressed()){
+     jetpackLevel.setPressed(true);
+     if (canBuy(1000)){
+       buy(1000);
+   }
+   }
    if (restart.getMouseOver() && !restart.getPressed()){
      restart.setPressed(true);
     fill(0, 153, 76);
@@ -216,6 +230,16 @@ void draw(){
         image(jetpackSprite, a.getXPos() - 300, a.getYPos() - 100);
      }
    }
+   boolean canBuy(int cost){
+    if (a.getCoins() >= cost){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  void buy(int cost){
+    a.setCoins(a.getCoins() - cost);
+  }
 
    
 
