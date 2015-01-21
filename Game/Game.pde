@@ -167,6 +167,7 @@ void draw(){
      makeSureOnlyOnce = 0;
      run.setPressed(false);
      oneTime = true;
+     launcher.setAngle(1);
      a.drawFerret(running);
      launcher.drawCannon();
      angle.drawSlider();
