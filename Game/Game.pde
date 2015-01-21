@@ -100,25 +100,25 @@ void draw(){
      if(angle.getPosition() < 100){
        launcher.setAngle(1);
      }else if(angle.getPosition() < 200){
-        launcher.setAngle(11);      
+        launcher.setAngle(20);      
      }else if(angle.getPosition() < 300){
-         launcher.setAngle(22);     
+         launcher.setAngle(30);     
      }else if(angle.getPosition() < 350){
-        launcher.setAngle(33);      
+        launcher.setAngle(40);      
      }else if(angle.getPosition() < 450){
-       launcher.setAngle(45);       
+       launcher.setAngle(50);       
      }else if(angle.getPosition() < 500){
-       launcher.setAngle(56);       
+       launcher.setAngle(60);       
      }else if(angle.getPosition() < 600){
-       launcher.setAngle(68);       
+       launcher.setAngle(70);       
      }else if(angle.getPosition() < 700){
-       launcher.setAngle(79);       
+       launcher.setAngle(80);       
      }else{
        launcher.setAngle(90);       
      }
      launcher.drawCannon();
-     a.setXPos(1);
-     a.setYPos(displayHeight - 400);
+     a.setXPos(cos(radians(launcher.getAngle())) * 200);
+     a.setYPos(displayHeight - 400 - 200 * (tan(radians(launcher.getAngle())))); //* (200 * sin(radians(launcher.getAngle())))); //I never thought trig would have real world applications
      a.drawFerret(false);
    }
    if(power.getMouseOver() && !power.getPressed()){
