@@ -107,6 +107,8 @@ void draw(){
       }
       text("You have " + a.getCoins() + " coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
       noFill();
+      jetpackLevel.drawButton();
+      cannonLevel.drawButton();
       restart.drawButton();
       restart.setPressed(false);
     }
