@@ -10,6 +10,7 @@ int numberOfLoops = 0; //Used for background
 boolean running = false; //if ferret is in motion
 Button start;
 Button run;
+Button goToShop;
 Slider angle;
 Slider power;
 Ferret a;
@@ -30,6 +31,7 @@ void setup(){
   minim = new Minim(this);
   player = minim.loadFile("cheetahmen.mp3", 2048);
   player.play();
+  goToShop =  new Button("Go To Shop", 200, 200, displayWidth / 2, displayHeight / 2 - 300, color(255,255,255));
   start = new Button("Start", 200, 200, displayWidth / 2 - 100, displayHeight - 300, color(255,255,255));
   run = new Button("Run", 90, 90, 70, displayHeight - 200, color(255,255,255));
   angle = new Slider("Angle", 400, displayHeight - 200);
@@ -89,12 +91,15 @@ void draw(){
   }
     if (!a.endRun()){
       fill(50,150,200);
-      rect(displayWidth / 2 - 500, displayHeight / 2 - 500, 800, 800);
-      a.setScore(a.getXPos());
+      rect(displayWidth / 2 - 500, displayHeight / 2 - 500, 800, 600);
+      a.setScore(int(a.getXPos()));
       fill(0,0,0);
       textSize(32);
       text("Your score for this flight is " + int(a.getScore()), displayWidth / 2 - 100, displayHeight / 2 - 400);
+      a.setCoins(a.getScore());
+      text("You have " + a.getCoins() + "coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
       noFill();
+      goToShop.drawButton();
     }
 }
   void stop(){
