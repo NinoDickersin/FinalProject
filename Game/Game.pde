@@ -76,6 +76,9 @@ void draw(){
     }else{
        //set color of button to signify paused
     }
+    if(!a.endRun()){
+       running = false; 
+    }
      noFill();
   }
 }

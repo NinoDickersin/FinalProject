@@ -33,23 +33,22 @@ void drawFerret(boolean running){
   XPosition += getXVel();
   YPosition -= getYVel();
   bounce();
-  endRun(); 
   }
   
   void bounce(){
    if (YPosition >= displayHeight - 300 - (ferretRad / 2)) {
     setYVel(-3 * YVelocity / 4);
-    setXVel(getXVel() * 2/3);
+    setXVel(getXVel() - 2);
   }
   }
   
   boolean endRun(){
-   if (XVelocity <= 0 && YPosition >= displayHeight - 300 - (ferretRad / 2)){
+   if (XVelocity <= 0.2 && YPosition >= displayHeight - 300 - (ferretRad / 2)){
       setXVel(0);
       setYVel(0);
-      return true;
-      }
       return false;
+      }
+      return true;
   }
   void setXVel(float x){
     XVelocity = x;
