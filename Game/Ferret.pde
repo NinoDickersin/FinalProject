@@ -15,8 +15,6 @@ Ferret(int xi, int yi, float XVel, float YVel){
   YPosition = yi;
   setXVel(XVel);
   setYVel(YVel);
-  //XVelocity = cannonPower * cos(radians(cannonAngle));
-  //YVelocity = -1 * cannonPower * sin(radians(cannonAngle));
   for(int i = 0; i < imageCount; i++){
   ferretSprite[i] = loadImage("ferret" + i + ".png");
   }
@@ -39,14 +37,14 @@ void drawFerret(boolean running){
   }
   
   void bounce(){
-   if (YPosition >= controlY - (ferretRad / 2)) {
+   if (YPosition >= displayHeight - 300 - (ferretRad / 2)) {
     setYVel(- 1 * 3 * YVelocity / 4);
     setXVel(getXVel() - 2);
   }
   }
   
   boolean endRun(){
-   if (XVelocity <= 0 && YPosition >= controlY - (ferretRad / 2)){
+   if (XVelocity <= 0 && YPosition >= displayHeight - 300 - (ferretRad / 2)){
       setXVel(0);
       setYVel(0);
       return false;

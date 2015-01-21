@@ -32,11 +32,5 @@ public class Slider extends Clickable{
 	    slidingIncrement = slidingIncrement + (10 * neg);
 	}
     }
-    
-   void mousePressed(){
-   if(mouseOver && !pressed){
-    pressed = true;
-   }
-   }
 }
 
