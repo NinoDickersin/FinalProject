@@ -47,9 +47,9 @@ void drawFerret(boolean running){
    if (XVelocity <= 0 && YPosition >= displayHeight - 300 - (ferretRad / 2)){
       setXVel(0);
       setYVel(0);
-      return false;
-      }
       return true;
+      }
+      return false;
   }
   void setXVel(float x){
     XVelocity = x;
