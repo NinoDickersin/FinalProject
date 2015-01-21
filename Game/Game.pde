@@ -35,15 +35,15 @@ void setup(){
   start = new Button("Start", 200, 200, displayWidth / 2 - 100, displayHeight - 300);
   run = new Button("Run", 90, 90, 70, displayHeight - 250);
   //mute = new Button ("Mute", 90, 90, displayWidth - 400, displayHeight - 250);
-  restart = new Button("Restart", 200, 200, displayWidth / 2, displayHeight / 2 - 300);
+  restart = new Button("Restart", 200, 200, displayWidth / 2 + 50, displayHeight / 2 - 300);
   angle = new Slider("Angle", 400, displayHeight - 200);
   power = new Slider("Power", 400, displayHeight - 270);
   a = new Ferret(20, displayHeight - 400, 0, 0);
   launcher = new Cannon(0, displayHeight - 500);
   jetpack = new Cannon();
   jetpackSprite = loadImage("jetpack0.png");
-  cannonLevel = new Button("Cannon Upgrade", 100, 100, 300, 300);
-  jetpackLevel = new Button("Jetpack Upgrade", 100, 100, 100, 100);
+  cannonLevel = new Button("Cannon Upgrade", 200, 200, displayWidth / 2 - 200, displayHeight / 2 - 300);
+  jetpackLevel = new Button("Jetpack Upgrade", 200, 200, displayWidth / 2 - 450, displayHeight / 2 - 300);
   makeSureOnlyOnce = 0;
 }
 
@@ -98,7 +98,7 @@ void draw(){
   }
     if (!a.endRun()){
       fill(50,150,200);
-      rect(displayWidth / 2 - 500, displayHeight / 2 - 500, 800, 600);
+      rect(displayWidth / 2 - 500, displayHeight / 2 - 500, 900, 600);
       a.setScore(int(a.getXPos()));
       fill(0,0,0);
       textSize(32);
