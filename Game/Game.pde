@@ -10,7 +10,7 @@ int numberOfLoops = 0; //Used for background
 boolean running = false; //if ferret is in motion
 Button start;
 Button run;
-Button goToShop;
+Button restart;
 Slider angle;
 Slider power;
 Ferret a;
@@ -35,7 +35,7 @@ void setup(){
   start = new Button("Start", 200, 200, displayWidth / 2 - 100, displayHeight - 300);
   run = new Button("Run", 90, 90, 70, displayHeight - 250);
   //mute = new Button ("Mute", 90, 90, displayWidth - 400, displayHeight - 250);
-  goToShop = new Button("Go To Shop", 200, 200, displayWidth / 2, displayHeight / 2 - 300);
+  restart = new Button("Restart", 200, 200, displayWidth / 2, displayHeight / 2 - 300);
   angle = new Slider("Angle", 400, displayHeight - 200);
   power = new Slider("Power", 400, displayHeight - 270);
   a = new Ferret(20, displayHeight - 400, 0, 0);
@@ -72,7 +72,7 @@ void draw(){
     run.drawButton();
     angle.drawSlider();
     power.drawSlider();
-    mute.drawButton();
+    //mute.drawButton();
     if(a.getXVel() == 0 && a.getYVel() == 0 && angle.getPressed() && power.getPressed() && running){
       a.setXVel(launcher.getPower() * cos(radians(launcher.getAngle())));
       a.setYVel(launcher.getPower() * sin(radians(launcher.getAngle())));  
@@ -103,7 +103,7 @@ void draw(){
       }
       text("You have " + a.getCoins() + " coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
       noFill();
-      goToShop.drawButton();
+      restart.drawButton();
     }
 }
   void stop(){
@@ -132,6 +132,18 @@ void draw(){
    }else if(run.getMouseOver() && run.getPressed()){
      run.setPressed(false);
      running = false;
+   }
+   if (restart.getMouseOver() && !restart.getPressed()){
+     running = false;
+     a.setXPos(0);
+     a.setYPos(0);
+     a.drawFerret();
+     launcher.drawCannon();
+     angle.setPressed(false);
+     power.setPressed(false);
+     //get rid of that rectangle
+     //don't change coins
+     //reset jetpack
    }
    if(angle.getMouseOver() && !angle.getPressed()){
      angle.setPressed(true);
