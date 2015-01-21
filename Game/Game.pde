@@ -63,11 +63,11 @@ void draw(){
     launcher.drawCannon();
     if(a.getXVel() == 0 && a.getYVel() == 0 && angle.getPressed() && power.getPressed()){
       a.setXVel(launcher.getPower() * cos(radians(launcher.getAngle())));
-      a.setYVel(-1 * launcher.getPower() * sin(radians(launcher.getAngle())));  
+      a.setYVel(launcher.getPower() * sin(radians(launcher.getAngle())));  
     }
     a.drawFerret(running);
     fill(0,0,0);
-    if (running){
+    if (running && angle.getPressed() && power.getPressed()){
        a.movement();
        //set color of button to signify playing
     }else{
@@ -75,7 +75,6 @@ void draw(){
     }
      noFill();
   }
-  
 }
 
   void stop(){

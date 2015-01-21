@@ -3,23 +3,23 @@ public class Slider extends Clickable{
    int neg = 1; //negation for moving slider box
   
    Slider(String t, int xpos, int ypos){
-      super(xpos, ypos, 800, 40, t);
+      super(xpos, ypos, 40, 800, t);
       drawSlider();
    }
   
     void drawSlider(){
       fill(255,255,255);
-      rect(XPosition, YPosition, h, w);
+      rect(XPosition, YPosition, w, h);
       fill(128,255,0);
-      rect(XPosition + 100, YPosition, h - 200, w); 
+      rect(XPosition + 100, YPosition, w - 200, h); 
       fill(255,255,0);
-      rect(XPosition + 200, YPosition, h - 400, w);
+      rect(XPosition + 200, YPosition, w - 400, h);
       fill(255,128,0);
-      rect(XPosition + 300, YPosition, h - 600, w);
+      rect(XPosition + 300, YPosition, w - 600, h);
       fill(255,0,0);
-      rect(XPosition + 350, YPosition, h - 700, w);
+      rect(XPosition + 350, YPosition, w - 700, h);
       fill(0,0,0);
-      rect(XPosition + slidingIncrement, YPosition, 10, w);
+      rect(XPosition + slidingIncrement, YPosition, 10, h);
     }
     int getPosition (){
 	return slidingIncrement; 
