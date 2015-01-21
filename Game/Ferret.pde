@@ -38,8 +38,8 @@ void drawFerret(boolean running){
   
   void bounce(){
    if (YPosition >= displayHeight - 300 - (ferretRad / 2)) {
-    setYVel(- 1 * 3 * YVelocity / 4);
-    setXVel(getXVel() - 2);
+    setYVel(-3 * YVelocity / 4);
+    setXVel(getXVel() * 2/3);
   }
   }
   

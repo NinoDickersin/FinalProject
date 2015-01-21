@@ -62,8 +62,8 @@ void draw(){
     power.drawSlider();
     launcher.drawCannon();
     if(a.getXVel() == 0 && a.getYVel() == 0 && angle.getPressed() && power.getPressed()){
-      //a.setXVel(cannonPower * cos(radians(cannonAngle)));
-     // a.setYVel (-1 * cannonPower * sin(radians(cannonAngle)));  
+      a.setXVel(launcher.getPower() * cos(radians(launcher.getAngle())));
+      a.setYVel(-1 * launcher.getPower() * sin(radians(launcher.getAngle())));  
     }
     a.drawFerret(running);
     fill(0,0,0);
@@ -96,19 +96,47 @@ void draw(){
    if(angle.getMouseOver() && !angle.getPressed()){
      angle.setPressed(true);
      if(angle.getPosition() < 100){
-       
+       launcher.setAngle(1);
      }else if(angle.getPosition() < 200){
-       
+        launcher.setAngle(11);      
      }else if(angle.getPosition() < 300){
-       
+         launcher.setAngle(22);     
      }else if(angle.getPosition() < 350){
-       
-     }else if(angle.getPosition() < 100){
-       
+        launcher.setAngle(33);      
+     }else if(angle.getPosition() < 450){
+       launcher.setAngle(45);       
+     }else if(angle.getPosition() < 500){
+       launcher.setAngle(56);       
+     }else if(angle.getPosition() < 600){
+       launcher.setAngle(68);       
+     }else if(angle.getPosition() < 700){
+       launcher.setAngle(79);       
+     }else{
+       launcher.setAngle(90);       
      }
+     launcher.drawCannon();   
    }
    if(power.getMouseOver() && !power.getPressed()){
      power.setPressed(true);
+      if(power.getPosition() < 100){
+       launcher.setPower(1);
+     }else if(power.getPosition() < 200){
+        launcher.setPower(2);      
+     }else if(power.getPosition() < 300){
+         launcher.setPower(3);     
+     }else if(power.getPosition() < 350){
+        launcher.setPower(4);      
+     }else if(power.getPosition() < 450){
+       launcher.setPower(5);       
+     }else if(power.getPosition() < 500){
+       launcher.setPower(4);       
+     }else if(power.getPosition() < 600){
+       launcher.setPower(3);       
+     }else if(power.getPosition() < 700){
+       launcher.setPower(2);       
+     }else{
+       launcher.setPower(1);       
+     }
    }
    }
 
