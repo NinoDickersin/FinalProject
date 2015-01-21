@@ -84,11 +84,10 @@ void draw(){
     }
      noFill();
   }
-    if (!a.endRun()){
-    rect(100,100,100,100);
+    if (a.endRun() == false){
+      rect(displayWidth / 6, displayWidth / 6, displayWidth / 4, displayWidth / 4);
+    }
 }
-}
-
   void stop(){
     player.close();
     minim.stop();
