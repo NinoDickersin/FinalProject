@@ -17,6 +17,12 @@ public class Cannon extends Item{
 	cannonPower = 1;
 	cannonAngle = 45;
     }
+    
+    Cannon(){
+      super(0);
+      cannonPower = 1;
+      cannonAngle = 45;
+    }
     void setAngle(int a){
 	cannonAngle = float(a);
         spriteCount = (a / 10) - 1;

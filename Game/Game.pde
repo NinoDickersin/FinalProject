@@ -14,9 +14,11 @@ Slider angle;
 Slider power;
 Ferret a;
 Cannon launcher;
+Cannon jetpack;
 Button cannonLevel;
 Button jetpackLevel;
 int score; // the amount of coins the ferret generates on a flight
+boolean oneTime = true;
 
 void setup(){
   size(displayWidth, displayHeight);
@@ -34,6 +36,7 @@ void setup(){
   power = new Slider("Power", 400, displayHeight - 270);
   a = new Ferret(20, displayHeight - 400, 0, 0);
   launcher = new Cannon(0, displayHeight - 500);
+  jetpack = new Cannon();
   cannonLevel = new Button("Cannon Upgrade", 100, 100, 300, 300, color(255,255,255));
   jetpackLevel = new Button("Jetpack Upgrade", 100, 100, 100, 100, color(255,255,255));
 }
@@ -151,6 +154,14 @@ void draw(){
        launcher.setPower(1);       
      }
    }
+   }
+   
+   void keyPressed(){
+     if (key == ' ' && running && oneTime){
+        a.setXVel(a.getXVel() + jetpack.getPower() * cos(radians(45)));
+        a.setYVel(a.getYVel() + jetpack.getPower() * cos(radians(45))); 
+        oneTime = false;
+     }
    }
 
    
