@@ -104,7 +104,10 @@ void draw(){
       text("You have " + a.getCoins() + " coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
       noFill();
       goToShop.drawButton();
+      if (goToShop.getPressed() == true){
+        rect(300,300,300,300);
     }
+}
 }
   void stop(){
     player.close();
@@ -122,6 +125,9 @@ void draw(){
    }
    if(start.getMouseOver() && !start.getPressed()){
     start.setPressed(true);
+   }
+   if(goToShop.getMouseOver() && !goToShop.getPressed()){
+    goToShop.setPressed(true);
    }
    if (run.getMouseOver() && !run.getPressed()){
      run.setPressed(true);
