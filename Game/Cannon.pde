@@ -3,10 +3,10 @@ public class Cannon extends Item{
   PImage[] cannonSprite = new PImage[imageCount]; //sprites for cannon
   int spriteCount = 0; //keeps track of what sprite is currently being used
   float cannonAngle; //angle of launch
-  float cannonPower; //power of cannon
+  int cannonPower; //power of cannon
   int xpos; //xposition of cannon
   int ypos; //yposition of cannon
-
+  int level = 0; //the level of the cannon
     Cannon(int XPosition, int YPosition){
         this();
         for(int i = 0; i < imageCount; i++){
@@ -29,24 +29,22 @@ public class Cannon extends Item{
         }
     }
     void setPower(int p){
-	cannonPower = float(p) * (level + 3) + 5;
+	cannonPower = p * (level + 3) + 5;
     }
     float getAngle(){
 	return cannonAngle;
     }
-    float getPower(){
+    int getPower(){
 	return cannonPower;
     }
     
     void drawCannon(){
      image(cannonSprite[spriteCount], xpos, ypos); 
     }
-    
-    void buy(){
-      
-    if(canBuy(level * 1000)){
-      level += 1;
+    int getLevel(){
+      return level;
     }
+    void setLevel(int l){
+      level = l;
     }
-    
 }
