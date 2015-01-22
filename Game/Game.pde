@@ -162,7 +162,7 @@ void draw(){
     rect(0, displayHeight - 300, displayWidth, 300);
     noFill();
      running = false;
-     a.setXPos(20);
+     a.setXPos(30);
      a.setYPos(displayHeight - 400);
      angle.setPressed(false);
      power.setPressed(false);
@@ -197,8 +197,6 @@ void draw(){
        launcher.setAngle(90);       
      }
      launcher.drawCannon();
-     a.setXPos(100 + cos(radians(launcher.getAngle())) * 200);
-     a.setYPos(displayHeight - 250 - 200 * (sin(radians(launcher.getAngle())))); //I never thought trig would have real world applications
      a.drawFerret(false);
    }
    if(power.getMouseOver() && !power.getPressed()){
