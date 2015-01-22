@@ -147,14 +147,14 @@ void draw(){
    if (cannonLevel.getMouseOver()){
      cannonLevel.setPressed(true);
      if (canBuy(1000)){
-       buy(1000);
+       buy(1000, 0);
    }
    cannonLevel.setPressed(false);
    }
    if (jetpackLevel.getMouseOver()){
      jetpackLevel.setPressed(true);
      if (canBuy(1000)){
-       buy(1000);
+       buy(1000, 1);
    }
      cannonLevel.setPressed(false);
    }
@@ -240,8 +240,15 @@ void draw(){
       return false;
     }
   }
-  void buy(int cost){
+  void buy(int cost, int itemType){
     a.setCoins(a.getCoins() - cost);
+    if (itemType == 0){
+      launcher.setLevel(launcher.getLevel() + 1);
+      launcher.setPower(launcher.getPower() + launcher.getLevel());
+    }else{
+      jetpack.setLevel(jetpack.getLevel() + 1);
+      jetpack.setPower(jetpack.getPower() + jetpack.getLevel());
+  }
   }
 
    
