@@ -29,7 +29,7 @@ public class Cannon extends Item{
         }
     }
     void setPower(int p){
-	cannonPower = p * (level + 3) + 5;
+	cannonPower = p * (level) + 5;
     }
     float getAngle(){
 	return cannonAngle;

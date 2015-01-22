@@ -31,7 +31,7 @@ public class Slider extends Clickable{
 	    neg = neg * -1;
 	}
 	if (!pressed){
-	    slidingIncrement = slidingIncrement + (10 * neg);
+	    slidingIncrement = slidingIncrement + (20 * neg);
 	}
     }
 }
