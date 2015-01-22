@@ -43,9 +43,9 @@ public class Cannon extends Item{
     }
     
     void buy(){
+      
     if(canBuy(level * 1000)){
       level += 1;
-      setPower(int(this.getPower() + 1));
     }
     }
     
