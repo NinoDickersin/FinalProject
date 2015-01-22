@@ -106,7 +106,7 @@ void draw(){
       textSize(32);
       text("Your score for this flight is " + int(a.getScore()), displayWidth / 2 - 100, displayHeight / 2 - 400);
       if (makeSureOnlyOnce == 0){
-      a.setCoins(a.getScore());
+      a.setCoins(a.getCoins() + a.getScore());
       makeSureOnlyOnce += 1;
       }
       text("You have " + a.getCoins() + " coins!", displayWidth / 2 - 100, displayHeight / 2 - 350);
@@ -144,17 +144,19 @@ void draw(){
      run.setPressed(false);
      running = false;
    }
-   if (cannonLevel.getMouseOver() && !cannonLevel.getPressed()){
+   if (cannonLevel.getMouseOver()){
      cannonLevel.setPressed(true);
      if (canBuy(1000)){
        buy(1000);
    }
+   cannonLevel.setPressed(false);
    }
-   if (jetpackLevel.getMouseOver() && !jetpackLevel.getPressed()){
+   if (jetpackLevel.getMouseOver()){
      jetpackLevel.setPressed(true);
      if (canBuy(1000)){
        buy(1000);
    }
+     cannonLevel.setPressed(false);
    }
    if (restart.getMouseOver() && !restart.getPressed()){
      restart.setPressed(true);

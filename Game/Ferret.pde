@@ -85,6 +85,6 @@ void drawFerret(boolean running){
     return coins;
   }
   void setCoins(int score){
-    coins += score;
+    coins = score;
   }
 }
